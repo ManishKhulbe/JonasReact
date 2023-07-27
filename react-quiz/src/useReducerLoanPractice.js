@@ -30,20 +30,21 @@ function reducer(state, action) {
     case "open":
       return { ...state, isActive: true };
     case "deposit":
-      return { ...state, balance: state.balance + 150 };
+      return { ...state, balance: state.balance + action.payload };
     case "withdraw":
-      return { ...state, balance: state.balance - 50 };
+      return { ...state, balance: state.balance - action.payload };
     case "loan":
       return {
         ...state,
-        loan: state.loan > 0 ? state.loan : state.loan + 5000,
-        balance: state.loan > 0 ? state.balance : state.balance + 5000,
+        loan: state.loan > 0 ? state.loan : state.loan + action.payload,
+        balance:
+          state.loan > 0 ? state.balance : state.balance + action.payload,
       };
     case "payLoan":
       return {
         ...state,
-        balance: state.balance - 5000,
-        loan: state.loan - 5000,
+        balance: state.balance - action.payload,
+        loan: state.loan - action.payload,
       };
     case "close":
       return { ...initialState };
@@ -67,7 +68,7 @@ export default function App() {
           onClick={() => {
             dispatch({ type: "open" });
           }}
-          disabled={false}
+          disabled={isActive}
         >
           Open account
         </button>
@@ -75,7 +76,7 @@ export default function App() {
       <p>
         <button
           onClick={() => {
-            dispatch({ type: "deposit" });
+            dispatch({ type: "deposit", payload: 150 });
           }}
           disabled={!isActive}
         >
@@ -85,7 +86,7 @@ export default function App() {
       <p>
         <button
           onClick={() => {
-            dispatch({ type: "withdraw" });
+            dispatch({ type: "withdraw", payload: 50 });
           }}
           disabled={!isActive}
         >
@@ -95,7 +96,7 @@ export default function App() {
       <p>
         <button
           onClick={() => {
-            dispatch({ type: "loan" });
+            dispatch({ type: "loan", payload: 5000 });
           }}
           disabled={!isActive}
         >
@@ -105,7 +106,7 @@ export default function App() {
       <p>
         <button
           onClick={() => {
-            dispatch({ type: "payLoan" });
+            dispatch({ type: "payLoan", payload: 5000 });
           }}
           disabled={!isActive}
         >
