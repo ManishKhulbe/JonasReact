@@ -47,6 +47,7 @@ function reducer(state, action) {
         loan: state.loan - action.payload,
       };
     case "close":
+      if (state.balance !==0 || state.loan > 0) return state;
       return { ...initialState };
     default:
       return new Error("no action");
