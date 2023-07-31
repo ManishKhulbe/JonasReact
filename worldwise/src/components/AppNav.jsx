@@ -7,7 +7,8 @@ function AppNav() {
         <nav className={styles.nav}>
             <ul>
                 <li>
-                    <NavLink to='cities'>Cities</NavLink>
+                    <NavLink to='cities'>Cities</NavLink> 
+                    {/* NavLink automatic add active class */}
                 </li>
                 <li>
                     <NavLink to='countries'>Countries </NavLink>
