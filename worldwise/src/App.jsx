@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import CityList from "./components/CityList";
@@ -12,8 +10,9 @@ import Pricing from "./pages/Pricing";
 import Product from "./pages/Product";
 import City from "./components/City";
 import { CityContextProvider } from "./contexts/CityContextProvider";
+import Form from "./components/Form";
 
-const BASE_URl = "http://localhost:8000";
+
 function App() {
   return (
     <CityContextProvider>
@@ -34,7 +33,7 @@ function App() {
               path="countries"
               element={<CountryList  />}
             />
-            <Route path="form" element={<p>Form</p>} />
+            <Route path="form" element={<Form/>} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
