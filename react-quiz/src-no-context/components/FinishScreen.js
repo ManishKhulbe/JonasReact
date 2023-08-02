@@ -1,7 +1,4 @@
-import { useQuizProvider } from "../context/QuizProvider";
-
-function FinishScreen() {
-  const { points, maxPossiblePoints, highScore, dispatch } = useQuizProvider()
+function FinishScreen({ points, maxPossiblePoints, highScore, dispatch }) {
   const percentage = (points / maxPossiblePoints) * 100;
 
   let emoji;
@@ -16,7 +13,7 @@ function FinishScreen() {
       <p className="result">
         <span>{emoji}</span> You scored <strong>{points}</strong> out of{" "}
         {maxPossiblePoints}
-        ( {Math.ceil(percentage)}%)
+        {Math.ceil(percentage)}
       </p>
       <p className="highscore"> highScore: {highScore} points </p>
       <button

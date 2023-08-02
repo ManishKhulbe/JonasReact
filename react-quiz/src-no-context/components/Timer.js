@@ -1,11 +1,9 @@
 import {useEffect} from 'react'
-import { useQuizProvider } from '../context/QuizProvider';
 
-function Timer() {
-const { dispatch, secondsRemaining } = useQuizProvider()
+function Timer({ dispatch, secondsRemaining }) {
+
     const mins = Math.floor(secondsRemaining / 60)
-  const seconds = secondsRemaining % 60
-  
+    const seconds = secondsRemaining%60
   useEffect(() => {
    const id =  setInterval(() => {
       dispatch({ type: "tick" });
